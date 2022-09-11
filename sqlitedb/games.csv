@@ -1,66 +1,66 @@
 game_id,name,location
-1,1830: Railways & Robber Barons,A1
-2,1844/1854,A1
-3,1846: The Race for the Midwest,A1
-4,Chicago Express,A1
-5,Mystic Vale,B1
-6,Karuba,B1
-7,Chronicles of Crime: 2400,B1
-8,Chronicles of Crime,B1
-9,Maglev Metro,A2
-10,Ticket to Ride: Europe,A2
-11,Trans Europa,A2
-12,Railways of the World,A2
-13,Pyramid Arcade,B2
-14,Genotype,B2
-15,Cytosis,B2
-16,Glen More,B2
-17,Azul,A3
-18,Century: Spice Road,A3
-19,Reef,A3
-20,Sagrada,A3
-21,Orleans,B3
-22,Puerto Rico,B3
-23,San Juan,B3
-24,Stone Age,B3
-25,Fields of Arle,A4
-26,Le Havre,A4
-27,Caverna: The Cave Farmers,A4
-28,Caverna: The Forgotten Folk,A4
-29,Agricola,B4
-30,Feast for Odin,B4
-31,Feast for Odin: The Norweigians,B4
-32,Clans of Caledonia,B4
-33,Yukon Salon,C1
-34,Monikers,C1
-35,Dungeoneer: Tomb of the Lich Lord,C1
-36,Army of Darkness Card Game,C1
-37,Pairs: The Name of the Wind,C1
-38,Gloom:  Second Edition,C1
-39,Gloom: Unwelcome Guests,C1
-40,Kobayakawa,C2
-41,Sushi Go!,C2
-42,Abandon All Artichokes,C2
-43,Joking Hazard,C2
-44,A Fake Artist Goes to New York,C2
-45,Grandpa Beck's Cover Your Assets,C2
-46,The Castles of Burgundy: The Card Game,C3
-47,Mystery Rummy: Escape from Alcatraz,C3
-48,Hey! That's My Fish!,C3
-49,Jump Drive,C3
-50,The Mind,C4
-51,Mottainai,C4
-52,Oh My Goods!,C4
-53,Adventure Time: Love Letter,C4
-54,Hanabi,C4
-55,Space Cats Fight Facism,C4
-56,Codenames: Duet,C5
-57,Werewords: Deluxe Edition,C5
-58,Glasgow,C5
-59,Targi,C5
-60,Onirim,C6
-61,Innovation,C6
-62,The Crew: Mission Deep Sea,C6
+1,1830: Railways & Robber Barons,1A
+2,1844/1854,1A
+3,1846: The Race for the Midwest,1A
+4,Chicago Express,1A
+5,Mystic Vale,1B
+6,Karuba,1B
+7,Chronicles of Crime: 2400,1B
+8,Chronicles of Crime,1B
+9,Maglev Metro,2A
+10,Ticket to Ride: Europe,2A
+11,Trans Europa,2A
+12,Railways of the World,2A
+13,Pyramid Arcade,2B
+14,Genotype,2B
+15,Cytosis,2B
+16,Glen More,2B
+17,Azul,3A
+18,Century: Spice Road,3A
+19,Reef,3A
+20,Sagrada,3A
+21,Orleans,3B
+22,Puerto Rico,3B
+23,San Juan,3B
+24,Stone Age,3B
+25,Fields of Arle,4A
+26,Le Havre,4A
+27,Caverna: The Cave Farmers,4A
+28,Caverna: The Forgotten Folk,4A
+29,Agricola,4B
+30,Feast for Odin,4B
+31,Feast for Odin: The Norweigians,4B
+32,Clans of Caledonia,4B
+33,Yukon Salon,1C
+34,Monikers,1C
+35,Dungeoneer: Tomb of the Lich Lord,1C
+36,Army of Darkness Card Game,1C
+37,Pairs: The Name of the Wind,1C
+38,Gloom:  Second Edition,1C
+39,Gloom: Unwelcome Guests,1C
+40,Kobayakawa,2C
+41,Sushi Go!,2C
+42,Abandon All Artichokes,2C
+43,Joking Hazard,2C
+44,A Fake Artist Goes to New York,2C
+45,Grandpa Beck's Cover Your Assets,2C
+46,The Castles of Burgundy: The Card Game,3C
+47,Mystery Rummy: Escape from Alcatraz,3C
+48,Hey! That's My Fish!,3C
+49,Jump Drive,3C
+50,The Mind,4C
+51,Mottainai,4C
+52,Oh My Goods!,4C
+53,Adventure Time: Love Letter,4C
+54,Hanabi,4C
+55,Space Cats Fight Facism,4C
+56,Codenames: Duet,5C
+57,Werewords: Deluxe Edition,5C
+58,Glasgow,5C
+59,Targi,5C
+60,Onirim,6C
+61,Innovation,6C
+62,The Crew: Mission Deep Sea,6C
 63,Choose Your Own Adventure: House of Danger,C7
 64,Get On Board: New York and London,C7
 65,Heckadeck,C7
@@ -81,83 +81,83 @@ game_id,name,location
 80,On Mars,B6
 81,Galaxy Trucker,B6
 82,Terraforming Mars,B6
-83,Spirit Island,C5
-84,Cascadia,C5
-85,Meadow,C5
-86,Wingspan,C5
-87,Sleeping Gods,C6
-88,Sleeping Gods: Tides of Ruin,C6
-89,Tidal Blades: Heroes of the Reef,C6
-90,Underwater Cities,C6
-91,The Manhattan Project: Energy Empire,D5
-92,Five Tribes,D5
-93,Ark Nova,D5
-94,The Isle of Cats,D5
-95,Everdell: Collectors Edition,D6
-96,The Quacks of Quedlinburg,D6
-97,Lost Ruins of Arnak,D6
-98,Brass: Birmingham,D6
-99,Capo dei Capi,E5
-100,Forbidden Desert,E5
-101,Forbidden Island,E5
-102,The Isle of Cats: Kittens and Beasts,E6
-103,The Isle of Cats: Late Arrivals,E6
-104,The Isle of Cats: Boat Pack,E6
-105,Team3: Green Box,E7
-106,Team3: Pink Box,E7
-107,Scrabble,A7
-108,Go,A7
-109,Cribbage,A7
-110,Hive,A7
-111,The Bloody Inn,B7
-112,Viticulture World,D7
-113,Viticulture: Essential Edition,D7
-114,The Networks,D7
-115,Raptor,D7
-116,Balderdash,E7
-117,QE,E7
-118,Factory Funner,E7
-119,Railroad Ink: Blazing Red Edition,E7
-120,Copenhagen,A8
-121,Acquire,A8
-122,Steam Park,A8
-123,Scythe,A8
-124,Small World,A8
-125,Charterstone,A8
-126,Pret-A-Porter,B8
-127,Through the Ages,B8
-128,Khora: Rise of an Empire,B8
-129,Lorenzo Il Magnifico,B8
-130,Beyond the Sun,B8
-131,Petrichor,B8
-132,Above and Below,B8
-133,Clank! In! Space!,C8
-134,Clank! In! Space!: Cyberstation 11,C8
-135,Obscurio,C8
-136,Mysterium,C8
-137,Embarcadero,C8
-138,Honey Buzz,C8
-139,Whitehall Mystery,C8
-140,Last Will,C8
-141,Adventure Land,D8
-142,Rhino Hero: Super Battle,D8
-143,Strike!,D8
-144,Tokyo Highway,D8
-145,Dice Realms,D8
-146,Furnace,D8
-147,The Guild of Merchant Explorers,D8
-148,Great Western Trail,D8
-149,Betrayal at House on the Hill,E8
-150,Betrayal Legacy,E8
-151,Ghost Stories,E8
-152,Ghost Stories: White Moon,E8
-153,Legacy of Dragonholdt,E8
-154,Aftermath,E8
-155,Oath: Chronicles of Empire and Exile,E8
-156,Vagrantsong,E8
-157,Arraial,C9
-158,Machi Koro: Deluxe Edition,C9
-159,Gloomhaven: Jaws of the Lion,E9
-160,Unmatched: Cobble and Fog,E9
-161,Mechs vs. Minions,A10
-162,Project L,B2
+83,Spirit Island,5C
+84,Cascadia,5C
+85,Meadow,5C
+86,Wingspan,5C
+87,Sleeping Gods,6C
+88,Sleeping Gods: Tides of Ruin,6C
+89,Tidal Blades: Heroes of the Reef,6C
+90,Underwater Cities,6C
+91,The Manhattan Project: Energy Empire,5D
+92,Five Tribes,5D
+93,Ark Nova,5D
+94,The Isle of Cats,5D
+95,Everdell: Collectors Edition,6D
+96,The Quacks of Quedlinburg,6D
+97,Lost Ruins of Arnak,6D
+98,Brass: Birmingham,6D
+99,Capo dei Capi,5E
+100,Forbidden Desert,5E
+101,Forbidden Island,5E
+102,The Isle of Cats: Kittens and Beasts,6E
+103,The Isle of Cats: Late Arrivals,6E
+104,The Isle of Cats: Boat Pack,6E
+105,Team3: Green Box,7E
+106,Team3: Pink Box,7E
+107,Scrabble,7A
+108,Go,7A
+109,Cribbage,7A
+110,Hive,7A
+111,The Bloody Inn,7B
+112,Viticulture World,7D
+113,Viticulture: Essential Edition,7D
+114,The Networks,7D
+115,Raptor,7D
+116,Balderdash,7E
+117,QE,7E
+118,Factory Funner,7E
+119,Railroad Ink: Blazing Red Edition,7E
+120,Copenhagen,8A
+121,Acquire,8A
+122,Steam Park,8A
+123,Scythe,8A
+124,Small World,8A
+125,Charterstone,8A
+126,Pret-A-Porter,8B
+127,Through the Ages,8B
+128,Khora: Rise of an Empire,8B
+129,Lorenzo Il Magnifico,8B
+130,Beyond the Sun,8B
+131,Petrichor,8B
+132,Above and Below,8B
+133,Clank! In! Space!,8C
+134,Clank! In! Space!: Cyberstation 11,8C
+135,Obscurio,8C
+136,Mysterium,8C
+137,Embarcadero,8C
+138,Honey Buzz,8C
+139,Whitehall Mystery,8C
+140,Last Will,8C
+141,Adventure Land,8D
+142,Rhino Hero: Super Battle,8D
+143,Strike!,8D
+144,Tokyo Highway,8D
+145,Dice Realms,8D
+146,Furnace,8D
+147,The Guild of Merchant Explorers,8D
+148,Great Western Trail,8D
+149,Betrayal at House on the Hill,8E
+150,Betrayal Legacy,8E
+151,Ghost Stories,8E
+152,Ghost Stories: White Moon,8E
+153,Legacy of Dragonholdt,8E
+154,Aftermath,8E
+155,Oath: Chronicles of Empire and Exile,8E
+156,Vagrantsong,8E
+157,Arraial,9C
+158,Machi Koro: Deluxe Edition,9C
+159,Gloomhaven: Jaws of the Lion,9E
+160,Unmatched: Cobble and Fog,9E
+161,Mechs vs. Minions,10A
+162,Project L,2B
