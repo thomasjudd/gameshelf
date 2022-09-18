@@ -17,7 +17,7 @@ type Game struct {
 var DB *sql.DB
 
 func indexGet(c *gin.Context) {
-	//c.HTML(http.StatusOK, "index.tmpl", gin.H{})
+		c.Redirect(301, "/search")
 }
 
 func searchGet(c *gin.Context) {
