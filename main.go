@@ -133,5 +133,5 @@ func main() {
 
 	router.GET("/games", gamesGet)
 
-	router.Run(":80")
+	router.Run(":8181")
 }
