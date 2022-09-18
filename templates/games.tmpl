@@ -2,5 +2,10 @@
   <head>
   </head>
 	<body>
+	   <ul>
+		  {{ range $game := .games }}
+	   <li><a href='/game/{{ $game.GameId }}'>{{ $game.Name }}</a></li>
+		 {{ end }}
+		 </ul>
 	</body>
 </html>

@@ -9,9 +9,9 @@ import (
 )
 
 type Game struct {
-	gameId   int    `json:"game_id"`
-	name     string `json:"name"`
-	location string `json:"location"`
+	GameId   int    `json:"game_id"`
+	Name     string `json:"name"`
+	Location string `json:"location"`
 }
 
 var DB *sql.DB
@@ -34,14 +34,14 @@ func searchPost(c *gin.Context) {
 	}
 	for rows.Next() {
 		var name string
-		err := rows.Scan(&game.gameId, &game.name, &game.location)
+		err := rows.Scan(&game.GameId, &game.Name, &game.Location)
 		if err != nil {
 			panic(err)
 		}
 		fmt.Println(name)
 	}
-	if game.name != "" {
-		c.Redirect(301, fmt.Sprintf("/game/%v", game.gameId))
+	if game.Name != "" {
+		c.Redirect(301, fmt.Sprintf("/game/%v", game.GameId))
 	} else {
 		c.JSON(404, gin.H{"msg": "Game Not Found"})
 	}
@@ -52,15 +52,15 @@ func gameGet(c *gin.Context) {
 	gameId := c.Param("gameid")
 	query := "SELECT * FROM game where game_id = ?;"
 	row := DB.QueryRow(query, gameId)
-	err := row.Scan(&game.gameId, &game.name, &game.location)
+	err := row.Scan(&game.GameId, &game.Name, &game.Location)
 
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(game.location)
+	fmt.Println(game.Location)
 	c.HTML(http.StatusOK, "game.tmpl", gin.H{
-		"game_name":     game.name,
-		"game_location": game.location,
+		"game_name":     game.Name,
+		"game_location": game.Location,
 	})
 }
 
@@ -86,9 +86,7 @@ func gameNewGet(c *gin.Context) {
 }
 
 func gamesGet(c *gin.Context) {
-	//get all game names and ids
-	//pass them to  games.tmpl
-	query := "SELECT name, game_id FROM game"
+	query := "SELECT game_id, name FROM game"
 	rows, err := DB.Query(query)
 	if err != nil {
 		panic(err)
@@ -98,14 +96,17 @@ func gamesGet(c *gin.Context) {
 	currGame := Game{}
 
 	for rows.Next() {
-		err := rows.Scan(&(currGame).gameId, &(currGame).name)
+		err := rows.Scan(&(currGame).GameId, &(currGame).Name)
 		if err != nil {
 			panic(err)
 		}
 
 		games = append(games, currGame)
 	}
-	c.HTML(http.StatusOK, "games.tmpl", games)
+
+	c.HTML(http.StatusOK, "games.tmpl", gin.H{
+		"games": games,
+	})
 }
 
 func main() {
