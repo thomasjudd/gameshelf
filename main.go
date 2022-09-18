@@ -29,7 +29,6 @@ func searchPost(c *gin.Context) {
 	gameName := c.PostForm("game_name")
 	query := "SELECT * FROM game_fts WHERE name MATCH ?;"
 	rows, err := DB.Query(query, gameName)
-	//	rows, err  := DB.QueryRow(query, gameName)
 	if err != nil {
 		panic(err)
 	}
@@ -41,9 +40,6 @@ func searchPost(c *gin.Context) {
 		}
 		fmt.Println(name)
 	}
-	//	if err != nil {
-	//		panic(err)
-	//  }
 	if game.name != "" {
 		c.Redirect(301, fmt.Sprintf("/game/%v", game.gameId))
 	} else {
@@ -89,6 +85,29 @@ func gameNewGet(c *gin.Context) {
 	c.HTML(http.StatusOK, "game_new.tmpl", gin.H{})
 }
 
+func gamesGet(c *gin.Context) {
+	//get all game names and ids
+	//pass them to  games.tmpl
+	query := "SELECT name, game_id FROM game"
+	rows, err := DB.Query(query)
+	if err != nil {
+		panic(err)
+	}
+
+	var games []Game
+	currGame := Game{}
+
+	for rows.Next() {
+		err := rows.Scan(&(currGame).gameId, &(currGame).name)
+		if err != nil {
+			panic(err)
+		}
+
+		games = append(games, currGame)
+	}
+	c.HTML(http.StatusOK, "games.tmpl", games)
+}
+
 func main() {
 	var err error
 	DB, err = sql.Open("sqlite3", "./sqlitedb/game_collection.db")
@@ -111,6 +130,8 @@ func main() {
 	router.GET("/game/:gameid", gameGet)
 	router.GET("/game/new", gameNewGet)
 	router.POST("/game/new", gameNewPost)
+
+	router.GET("/games", gamesGet)
 
 	router.Run(":80")
 }
