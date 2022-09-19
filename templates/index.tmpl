@@ -4,8 +4,8 @@
 	<body>
 	<div>
 	<ul>
-	{{ range .pages }}
-	  <li> <a href={{ . }}>{{ . }}</a></li>
+	{{ range $page := .pages }}
+	  <li> <a href=/{{ $page }}>{{ $page }}</a></li>
 	{{ end }}
 	</ul>
 	</div>
