@@ -7,7 +7,6 @@ RUN useradd -u 8877 gameshelf
 WORKDIR /app/
 COPY ./ ./
 RUN go build  --tags="fts5"  .
-EXPOSE 80
 USER gameshelf
 ENTRYPOINT  ["/usr/bin/dumb-init", "--"]
 CMD ./gameshelf

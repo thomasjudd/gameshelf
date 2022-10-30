@@ -3,8 +3,17 @@
   </head>
 	<body>
 	   <ul>
-		  {{ range $game := .games }}
-	   <li><a href='/game/{{ $game.GameId }}'>{{ $game.Name }}</a></li>
+		  {{ range $key, $value := .virtualShelf }}
+			  <li>{{ $key }}<ul>
+			  {{ range $game := $value }}
+					<li>
+						<ul>
+							<li>{{ $game.GameId }}</li>
+							<li>{{ $game.Name }}</li>
+						</ul>
+					</li>
+				{{ end }}
+				</ul></li>
 		 {{ end }}
 		 </ul>
 	</body>

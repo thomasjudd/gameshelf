@@ -18,7 +18,7 @@ var DB *sql.DB
 
 func indexGet(c *gin.Context) {
 	c.HTML(http.StatusOK, "index.tmpl", gin.H{
-		"pages": []string{"search","games"},
+		"pages": []string{"search","games", "game/new"},
 	})
 }
 
@@ -55,7 +55,6 @@ func gameGet(c *gin.Context) {
 	query := "SELECT * FROM game where game_id = ?;"
 	row := DB.QueryRow(query, gameId)
 	err := row.Scan(&game.GameId, &game.Name, &game.Location)
-
 	if err != nil {
 		panic(err)
 	}
@@ -88,26 +87,26 @@ func gameNewGet(c *gin.Context) {
 }
 
 func gamesGet(c *gin.Context) {
-	query := "SELECT game_id, name FROM game"
+	query := "SELECT game_id, name, location FROM game"
 	rows, err := DB.Query(query)
 	if err != nil {
 		panic(err)
 	}
 
-	var games []Game
+  virtualShelf := make(map[string][]Game)
 	currGame := Game{}
 
 	for rows.Next() {
-		err := rows.Scan(&(currGame).GameId, &(currGame).Name)
+		err := rows.Scan(&(currGame).GameId, &(currGame).Name, &(currGame).Location)
 		if err != nil {
 			panic(err)
 		}
-
-		games = append(games, currGame)
+		virtualShelf[currGame.Location] = append(virtualShelf[currGame.Location], currGame)
+    //virtualShelf = append(virtualShelf, currGame)
 	}
 
 	c.HTML(http.StatusOK, "games.tmpl", gin.H{
-		"games": games,
+		"virtualShelf": virtualShelf,
 	})
 }
 
