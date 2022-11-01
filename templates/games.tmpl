@@ -1,15 +1,27 @@
 <html>
   <head>
+	  <title>GameShelf - Virtual Shelf</title>
+		<style type="text/css">
+		  .container {
+			    display: grid;
+				  grid-template-columns: 1fr 1fr 1fr 1fr;
+					grid-gap: 5px;
+			}
+			.container > .cube {
+			    aspect-ratio: 1;
+					border-style: solid;
+			}
+		</style>
   </head>
 	<body>
-	   <ul>
+    <div class="container">
 		  {{ range $key, $value := .virtualShelf }}
-			  <li>{{ $key }}<ul>
+			 <div class="cube"><h3 class="game-location">{{ $key }}</h3>
 			  {{ range $game := $value }}
-					<li><a href="/game/{{ $game.GameId }}">{{ $game.Name }}</a></li>
+					<div class="game-info"><a href="/game/{{ $game.GameId }}">{{ $game.Name }}</a></div>
 				{{ end }}
-				</ul></li>
+				</div>
 		 {{ end }}
-		 </ul>
+		</div>
 	</body>
 </html>
