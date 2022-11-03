@@ -4,8 +4,9 @@ import (
 	"database/sql"
 	"fmt"
 	"github.com/gin-gonic/gin"
-	_ "github.com/mattn/go-sqlite3"
+	"html/template"
 	"net/http"
+	_ "github.com/mattn/go-sqlite3"
 )
 
 type Game struct {
@@ -17,9 +18,7 @@ type Game struct {
 var DB *sql.DB
 
 func indexGet(c *gin.Context) {
-	c.HTML(http.StatusOK, "index.tmpl", gin.H{
-		"pages": []string{"search","games", "game/new"},
-	})
+	c.HTML(http.StatusOK, "index.tmpl", gin.H{})
 }
 
 func searchGet(c *gin.Context) {
@@ -102,7 +101,6 @@ func gamesGet(c *gin.Context) {
 			panic(err)
 		}
 		virtualShelf[currGame.Location] = append(virtualShelf[currGame.Location], currGame)
-    //virtualShelf = append(virtualShelf, currGame)
 	}
 
 	c.HTML(http.StatusOK, "games.tmpl", gin.H{
@@ -118,12 +116,13 @@ func main() {
 	}
 	defer DB.Close()
 
+	html, err := template.ParseGlob("templates/*/*.tmpl")
 	if err != nil {
 		panic(err)
 	}
-
 	router := gin.Default()
-	router.LoadHTMLGlob("templates/*.tmpl")
+  router.SetHTMLTemplate(html)
+
 	router.GET("/", indexGet)
 
 	router.GET("/search", searchGet)
