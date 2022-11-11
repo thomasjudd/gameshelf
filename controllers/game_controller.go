@@ -8,20 +8,7 @@ import (
 	"net/http"
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/thomasjudd/gameshelf/entities"
-	"github.com/thomasjudd/gameshelf/controllers"
 )
-
-type Game struct {
-	GameId   int    `json:"game_id"`
-	Name     string `json:"name"`
-	Location string `json:"location"`
-}
-
-var DB *sql.DB
-
-func indexGet(c *gin.Context) {
-	c.HTML(http.StatusOK, "index.tmpl", gin.H{})
-}
 
 func searchGet(c *gin.Context) {
 	c.HTML(http.StatusOK, "search.tmpl", gin.H{})
@@ -108,33 +95,4 @@ func gamesGet(c *gin.Context) {
 	c.HTML(http.StatusOK, "games.tmpl", gin.H{
 		"virtualShelf": virtualShelf,
 	})
-}
-
-func main() {
-	var err error
-	DB, err = sql.Open("sqlite3", "./sqlitedb/game_collection.db")
-	if err != nil {
-		panic(err)
-	}
-	defer DB.Close()
-
-	html, err := template.ParseGlob("templates/*/*.tmpl")
-	if err != nil {
-		panic(err)
-	}
-	router := gin.Default()
-  router.SetHTMLTemplate(html)
-
-	router.GET("/", indexGet)
-
-	router.GET("/search", searchGet)
-	router.POST("/search", searchPost)
-
-	router.GET("/game/:gameid", gameGet)
-	router.GET("/game/new", gameNewGet)
-	router.POST("/game/new", gameNewPost)
-
-	router.GET("/games", gamesGet)
-
-	router.Run(":8181")
 }
