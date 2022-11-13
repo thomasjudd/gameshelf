@@ -1,4 +1,4 @@
-package entities
+package entity
 
 type Game struct {
 	GameId   int    `json:"game_id"`

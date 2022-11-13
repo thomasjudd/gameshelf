@@ -1,24 +1,24 @@
-package controllers
+package controller
 
 import (
-	"database/sql"
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"html/template"
 	"net/http"
 	_ "github.com/mattn/go-sqlite3"
-	"github.com/thomasjudd/gameshelf/entities"
+	"database/sql"
+	"gameshelf/entity"
 )
 
-func searchGet(c *gin.Context) {
+func SearchGet(c *gin.Context) {
 	c.HTML(http.StatusOK, "search.tmpl", gin.H{})
 }
 
-func searchPost(c *gin.Context) {
-	var game Game
+func SearchPost(c *gin.Context) {
+	var game entity.Game
+	db := c.MustGet("DBClient").(*sql.DB)
 	gameName := c.PostForm("game_name")
 	query := "SELECT * FROM game_fts WHERE name MATCH ?;"
-	rows, err := DB.Query(query, gameName)
+	rows, err := db.Query(query, gameName)
 	if err != nil {
 		panic(err)
 	}
@@ -37,11 +37,12 @@ func searchPost(c *gin.Context) {
 	}
 }
 
-func gameGet(c *gin.Context) {
-	var game Game
+func GameGet(c *gin.Context) {
+	var game entity.Game
+	db := c.MustGet("DBClient").(*sql.DB)
 	gameId := c.Param("gameid")
 	query := "SELECT * FROM game where game_id = ?;"
-	row := DB.QueryRow(query, gameId)
+	row := db.QueryRow(query, gameId)
 	err := row.Scan(&game.GameId, &game.Name, &game.Location)
 	if err != nil {
 		panic(err)
@@ -53,12 +54,13 @@ func gameGet(c *gin.Context) {
 	})
 }
 
-func gameNewPost(c *gin.Context) {
+func GameNewPost(c *gin.Context) {
+	db := c.MustGet("DBClient").(*sql.DB)
 	name := c.PostForm("name")
 	location := c.PostForm("location")
 	fmt.Println(location)
 	query := `INSERT INTO game (game_id, name, location) VALUES(NULL, ?, ?);`
-	statement, err := DB.Prepare(query)
+	statement, err := db.Prepare(query)
 	fmt.Println(statement)
 	defer statement.Close()
 	if err != nil {
@@ -70,19 +72,20 @@ func gameNewPost(c *gin.Context) {
 	}
 }
 
-func gameNewGet(c *gin.Context) {
+func GameNewGet(c *gin.Context) {
 	c.HTML(http.StatusOK, "game_new.tmpl", gin.H{})
 }
 
-func gamesGet(c *gin.Context) {
+func GamesGet(c *gin.Context) {
+	db := c.MustGet("DBClient").(*sql.DB)
 	query := "SELECT game_id, name, location FROM game"
-	rows, err := DB.Query(query)
+	rows, err := db.Query(query)
 	if err != nil {
 		panic(err)
 	}
 
-  virtualShelf := make(map[string][]Game)
-	currGame := Game{}
+  virtualShelf := make(map[string][]entity.Game)
+	currGame := entity.Game{}
 
 	for rows.Next() {
 		err := rows.Scan(&(currGame).GameId, &(currGame).Name, &(currGame).Location)
