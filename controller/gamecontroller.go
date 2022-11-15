@@ -7,29 +7,17 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 	"database/sql"
 	"gameshelf/entity"
+	"gameshelf/model"
 )
 
-func SearchGet(c *gin.Context) {
-	c.HTML(http.StatusOK, "search.tmpl", gin.H{})
+func IndexGet(c *gin.Context) {
+	c.HTML(http.StatusOK, "index.tmpl", gin.H{})
 }
 
 func SearchPost(c *gin.Context) {
-	var game entity.Game
 	db := c.MustGet("DBClient").(*sql.DB)
-	gameName := c.PostForm("game_name")
-	query := "SELECT * FROM game_fts WHERE name MATCH ?;"
-	rows, err := db.Query(query, gameName)
-	if err != nil {
-		panic(err)
-	}
-	for rows.Next() {
-		var name string
-		err := rows.Scan(&game.GameId, &game.Name, &game.Location)
-		if err != nil {
-			panic(err)
-		}
-		fmt.Println(name)
-	}
+	game := model.FindGameByName(db, c.PostForm("game_name"))
+
 	if game.Name != "" {
 		c.Redirect(301, fmt.Sprintf("/game/%v", game.GameId))
 	} else {
@@ -70,10 +58,6 @@ func GameNewPost(c *gin.Context) {
 	if err != nil {
 		panic(err)
 	}
-}
-
-func GameNewGet(c *gin.Context) {
-	c.HTML(http.StatusOK, "game_new.tmpl", gin.H{})
 }
 
 func GamesGet(c *gin.Context) {

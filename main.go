@@ -9,7 +9,6 @@ import (
 )
 
 func main() {
-
 	html, err := template.ParseGlob("templates/*/*.tmpl")
 	if err != nil {
 		panic(err)
@@ -18,11 +17,10 @@ func main() {
 	app.Use(middleware.SQLiteMiddleware())
   app.SetHTMLTemplate(html)
 
-	app.GET("/", controller.SearchGet)
+	app.GET("/", controller.IndexGet)
 	app.POST("/", controller.SearchPost)
 
 	app.GET("/game/:gameid", controller.GameGet)
-	app.GET("/game/new", controller.GameNewGet)
 	app.POST("/game/new", controller.GameNewPost)
 
 	app.GET("/games", controller.GamesGet)
