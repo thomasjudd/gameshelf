@@ -22,6 +22,7 @@ func main() {
 
 	app.GET("/game/:gameid", controller.GameGet)
 	app.POST("/game/new", controller.GameNewPost)
+	app.GET("/games/manage", controller.GamesManage)
 
 	app.GET("/games", controller.GamesGet)
 
