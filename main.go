@@ -21,7 +21,8 @@ func main() {
 	app.POST("/", controller.SearchPost)
 
 	app.GET("/game/:gameid", controller.GameGet)
-	app.POST("/game/new", controller.GameNewPost)
+	app.POST("/game/new", controller.GameNew)
+	app.POST("/game/delete", controller.GameDelete)
 	app.GET("/games/manage", controller.GamesManage)
 
 	app.GET("/games", controller.GamesGet)

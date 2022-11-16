@@ -31,19 +31,32 @@ func GamesManage(c *gin.Context) {
 	c.HTML(http.StatusOK, "games_manage.tmpl", gin.H{})
 }
 
-func GameNewPost(c *gin.Context) {
+func GameNew(c *gin.Context) {
 	db := c.MustGet("DBClient").(*sql.DB)
 	name := c.PostForm("name")
 	location := c.PostForm("location")
-	fmt.Println(location)
 	query := `INSERT INTO game (game_id, name, location) VALUES(NULL, ?, ?);`
 	statement, err := db.Prepare(query)
-	fmt.Println(statement)
 	defer statement.Close()
 	if err != nil {
 		panic(err)
 	}
 	_, err = statement.Exec(name, location)
+	if err != nil {
+		panic(err)
+	}
+}
+
+func GameDelete(c *gin.Context) {
+	db := c.MustGet("DBClient").(*sql.DB)
+	name := c.PostForm("name")
+	query := `DELETE FROM game WHERE name = ?;`
+	statement, err := db.Prepare(query)
+	defer statement.Close()
+	if err != nil {
+		panic(err)
+	}
+	_, err = statement.Exec(name)
 	if err != nil {
 		panic(err)
 	}
