@@ -7,5 +7,5 @@ import (
 )
 
 func IndexGet (c *gin.Context) {
-	c.HTML(http.StatusOK, "newindex.tmpl", gin.H{})
+	c.HTML(http.StatusOK, "index.tmpl", gin.H{})
 }

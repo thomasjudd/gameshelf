@@ -7,7 +7,6 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 	"database/sql"
 	"gameshelf/entity"
-	"gameshelf/model"
 )
 
 func GameGet(c *gin.Context) {
