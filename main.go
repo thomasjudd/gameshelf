@@ -18,13 +18,13 @@ func main() {
   app.SetHTMLTemplate(html)
 
 	app.GET("/", controller.IndexGet)
-	app.POST("/", controller.SearchPost)
 
 	app.GET("/game/:gameid", controller.GameGet)
-	app.POST("/game/new", controller.GameNewPost)
+	app.POST("/game/new", controller.GameNew)
+	app.POST("/game/delete", controller.GameDelete)
 	app.GET("/games/manage", controller.GamesManage)
 
-	app.GET("/games", controller.GamesGet)
+	app.GET("/shelf", controller.ShelfGet)
 
 	app.Run(":8181")
 }
