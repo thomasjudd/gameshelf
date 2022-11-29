@@ -10,21 +10,6 @@ import (
 	"gameshelf/model"
 )
 
-func IndexGet(c *gin.Context) {
-	c.HTML(http.StatusOK, "index.tmpl", gin.H{})
-}
-
-func SearchPost(c *gin.Context) {
-	db := c.MustGet("DBClient").(*sql.DB)
-	game := model.FindGameByName(db, c.PostForm("game_name"))
-
-	if game.Name != "" {
-		c.Redirect(301, fmt.Sprintf("/game/%v", game.GameId))
-	} else {
-		c.JSON(404, gin.H{"msg": "Game Not Found"})
-	}
-}
-
 func GameGet(c *gin.Context) {
 	var game entity.Game
 	db := c.MustGet("DBClient").(*sql.DB)
