@@ -20,14 +20,14 @@ func main() {
 	app.Static("/static/js", "./static/js")
 	app.Static("/static/css", "./static/css")
 
-	app.GET("/", controller.IndexGet)
+	app.GET("/", controller.ShelfGet)
 
 	app.GET("/game/:gameid", controller.GameGet)
 	app.POST("/game/new", controller.GameNew)
 	app.POST("/game/delete", controller.GameDelete)
 	app.GET("/games/manage", controller.GamesManage)
 
-	app.GET("/shelf", controller.ShelfGet)
+//	app.GET("/shelf", controller.ShelfGet)
 
 	app.Run(":8181")
 }

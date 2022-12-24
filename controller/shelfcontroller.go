@@ -29,7 +29,7 @@ func ShelfGet(c *gin.Context) {
 		virtualShelf[currGame.Location] = append(virtualShelf[currGame.Location], currGame)
 	}
 
-	c.HTML(http.StatusOK, "shelf.tmpl", gin.H{
+	c.HTML(http.StatusOK, "index.tmpl", gin.H{
 		"virtualShelf": virtualShelf,
 	})
 }
