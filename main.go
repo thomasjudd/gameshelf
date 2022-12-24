@@ -17,6 +17,9 @@ func main() {
 	app.Use(middleware.SQLiteMiddleware())
   app.SetHTMLTemplate(html)
 
+	app.Static("/static/js", "./static/js")
+	app.Static("/static/css", "./static/css")
+
 	app.GET("/", controller.IndexGet)
 
 	app.GET("/game/:gameid", controller.GameGet)
