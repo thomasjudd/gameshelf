@@ -10,7 +10,7 @@
 window.addEventListener('DOMContentLoaded', event => {
 
     // Toggle the side navigation
-    const shelvesToggle = document.body.querySelector('#shelvesToggle');
+    const sidebarToggle = document.body.querySelector('#sidebarToggle');
     if (sidebarToggle) {
         sidebarToggle.addEventListener('click', event => {
             event.preventDefault();
@@ -18,18 +18,4 @@ window.addEventListener('DOMContentLoaded', event => {
             localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
         });
     }
-
-    const gamesToggle = document.body.querySelector('#gamesToggle');
-    if (sidebarToggle) {
-        sidebarToggle.addEventListener('click', event => {
-            event.preventDefault();
-            document.body.classList.toggle('sb-sidenav-toggled');
-            localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
-        });
-    }
-
-	 const gameSearch = document.body.querySelector('#btnNavbarSearch');
-	if (gameSearch) {
-		console.log('search has been clicked')
-	}
 });
