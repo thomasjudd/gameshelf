@@ -23,9 +23,9 @@ func main() {
 	app.GET("/", controller.ShelfGet)
 
 	app.GET("/game/:gameid", controller.GameGet)
-	app.POST("/game/new", controller.GameNew)
+	app.GET("/game/new", controller.GameNewGet)
+	app.POST("/game/new", controller.GameNewPost)
 	app.POST("/game/delete", controller.GameDelete)
-	app.GET("/games/manage", controller.GamesManage)
 
 //	app.GET("/shelf", controller.ShelfGet)
 
