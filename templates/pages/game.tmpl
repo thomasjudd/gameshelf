@@ -1,9 +1,24 @@
-<html>
-  <head>
-  </head>
-	<body>
-		<header>{{ template "header" . }}</header>
-	    Game: {{.game_name}}  <br/>
-      Location: {{.game_location }}
-	</body>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Dashboard - Gameshelf</title>
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <link href="/static/css/styles.css" rel="stylesheet" />
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    </head>
+    <body class="sb-nav-fixed">
+		  {{ template "navtop" }}
+		  {{ template "navside" }}
+			{{ template "content_open" }}
+	    <h4>{{.game_name}}</h4>
+			<br/>
+      <h4>{{.game_location }}</h4>
+
+			{{ template "content_close" }}
+		</body>
 </html>

@@ -9,7 +9,7 @@ import (
 	"gameshelf/entity"
 )
 
-func ShelfGet(c *gin.Context) {
+func ShelvesGet(c *gin.Context) {
 	db := c.MustGet("DBClient").(*sql.DB)
 	fmt.Println("db:  ",  db)
 	query := "SELECT game_id, name, location FROM game"
