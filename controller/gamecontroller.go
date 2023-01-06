@@ -26,11 +26,11 @@ func GameGet(c *gin.Context) {
 	})
 }
 
-func GamesManage(c *gin.Context) {
-	c.HTML(http.StatusOK, "games_manage.tmpl", gin.H{})
+func GameNewGet(c *gin.Context) {
+	c.HTML(http.StatusOK, "game_new.tmpl", gin.H{})
 }
 
-func GameNew(c *gin.Context) {
+func GameNewPost(c *gin.Context) {
 	db := c.MustGet("DBClient").(*sql.DB)
 	name := c.PostForm("name")
 	location := c.PostForm("location")

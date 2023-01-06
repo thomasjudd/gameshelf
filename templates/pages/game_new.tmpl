@@ -15,10 +15,12 @@
 		  {{ template "navtop" }}
 		  {{ template "navside" }}
 			{{ template "content_open" }}
-	    <h4>{{.game_name}}</h4>
-			<br/>
-      <h4>{{.game_location }}</h4>
-
+			<h3> Add a Game </h3>
+				<form class="content" action="/game/new" method="post">
+					<input type="text" name="name" placeholder="Game to Add">
+					<input type="text" name="location" placeholder="Game Location">
+					<input type="submit" value="Add Game">
+				</form>
 			{{ template "content_close" }}
 		</body>
 </html>

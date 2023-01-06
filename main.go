@@ -17,14 +17,18 @@ func main() {
 	app.Use(middleware.SQLiteMiddleware())
   app.SetHTMLTemplate(html)
 
-	app.GET("/", controller.IndexGet)
+	app.Static("/static/js", "./static/js")
+	app.Static("/static/css", "./static/css")
+
+	app.GET("/", controller.ShelvesGet)
 
 	app.GET("/game/:gameid", controller.GameGet)
-	app.POST("/game/new", controller.GameNew)
-	app.POST("/game/delete", controller.GameDelete)
-	app.GET("/games/manage", controller.GamesManage)
+	app.GET("/game/new", controller.GameNewGet)
+	app.POST("/game/new", controller.GameNewPost)
 
-	app.GET("/shelf", controller.ShelfGet)
+	app.POST("/game/delete", controller.GameDelete)
+
+//	app.GET("/shelf", controller.ShelfGet)
 
 	app.Run(":8181")
 }

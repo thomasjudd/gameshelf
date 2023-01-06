@@ -9,7 +9,7 @@ import (
 	"gameshelf/entity"
 )
 
-func ShelfGet(c *gin.Context) {
+func ShelvesGet(c *gin.Context) {
 	db := c.MustGet("DBClient").(*sql.DB)
 	fmt.Println("db:  ",  db)
 	query := "SELECT game_id, name, location FROM game"
@@ -29,7 +29,7 @@ func ShelfGet(c *gin.Context) {
 		virtualShelf[currGame.Location] = append(virtualShelf[currGame.Location], currGame)
 	}
 
-	c.HTML(http.StatusOK, "shelf.tmpl", gin.H{
+	c.HTML(http.StatusOK, "index.tmpl", gin.H{
 		"virtualShelf": virtualShelf,
 	})
 }
