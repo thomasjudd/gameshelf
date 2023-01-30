@@ -21,6 +21,7 @@ func main() {
 	app.Static("/static/css", "./static/css")
 
 	app.GET("/", controller.ShelvesGet)
+	app.GET("/shelf/:shelfid", controller.ShelfGet)
 
 	app.GET("/game/:gameid", controller.GameGet)
 	app.GET("/game/new", controller.GameNewGet)

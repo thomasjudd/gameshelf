@@ -13,7 +13,8 @@ func GameGet(c *gin.Context) {
 	var game entity.Game
 	db := c.MustGet("DBClient").(*sql.DB)
 	gameId := c.Param("gameid")
-	query := "SELECT * FROM game where game_id = ?;"
+	//	query := "SELECT * FROM game where game_id = ?;"
+	query := "SELECT game.id, game.name, shelf.name FROM game LEFT JOIN shelf ON game.shelf_id = shelf.id WHERE game.id = ?;"
 	row := db.QueryRow(query, gameId)
 	err := row.Scan(&game.GameId, &game.Name, &game.Location)
 	if err != nil {
@@ -34,13 +35,23 @@ func GameNewPost(c *gin.Context) {
 	db := c.MustGet("DBClient").(*sql.DB)
 	name := c.PostForm("name")
 	location := c.PostForm("location")
-	query := `INSERT INTO game (game_id, name, location) VALUES(NULL, ?, ?);`
+
+	var shelfId int
+	shelfIdQuery := "SELECT id FROM shelf WHERE name = ?;"
+	row := db.QueryRow(shelfIdQuery, location)
+	err := row.Scan(&shelfId)
+	if err != nil {
+		panic(err)
+	}
+
+	query := `INSERT INTO game (game_id, name, shelf_id) VALUES(NULL, ?, ?);`
 	statement, err := db.Prepare(query)
 	defer statement.Close()
 	if err != nil {
 		panic(err)
 	}
-	_, err = statement.Exec(name, location)
+
+	_, err = statement.Exec(name, shelfId)
 	if err != nil {
 		panic(err)
 	}
@@ -63,7 +74,8 @@ func GameDelete(c *gin.Context) {
 
 func GamesGet(c *gin.Context) {
 	db := c.MustGet("DBClient").(*sql.DB)
-	query := "SELECT game_id, name, location FROM game"
+//	query := "SELECT game_id, name, location FROM game"
+	query := "SELECT game.id, game.name, shelf.name FROM game LEFT JOIN shelf ON game.shelf_id = shelf.id;"
 	rows, err := db.Query(query)
 	if err != nil {
 		panic(err)
