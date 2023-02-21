@@ -16,18 +16,16 @@
 		  {{ template "navside" }}
 			{{ template "content_open" }}
 				<div class="row">
-				{{ range $shelf_id, $games := .virtualShelf }}
-				<div id="card-{{ $shelf_id }}" class="card" style="width: 18rem;">
+				{{ range $shelf := .Shelves }}
+				<div id="card-{{ $shelf.ShelfId }}" class="card" style="width: 18rem;">
 					<div class="card-body">
-						<h5 class="card-title">{{ $shelf_id }}</h5>
+						<h5 class="card-title">{{ $shelf.Name}}</h5>
 						<p class="card-text">
-							{{ range $game := $games }}
+							{{ range $game := $shelf.Games }}
 								<a class="game-link" href="/game/{{ $game.GameId }}">{{ $game.Name }}</a>
 								<br />
 							{{ end }}
 						</p>
-					<!--<a href="#" class="card-link">Card link</a>
-					<a href="#" class="card-link">Another link</a>-->
 					</div>
 				</div>
 				{{ end }}

@@ -5,7 +5,8 @@ import (
 	"html/template"
 	_ "github.com/mattn/go-sqlite3"
 	"gameshelf/controller"
-	"gameshelf/middleware"
+	//"gameshelf/middleware"
+	"gameshelf/entity"
 )
 
 func main() {
@@ -13,8 +14,9 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	entity.ConnectDatabase()
 	app := gin.Default()
-	app.Use(middleware.SQLiteMiddleware())
+//	app.Use(middleware.SQLiteMiddleware())
   app.SetHTMLTemplate(html)
 
 	app.Static("/static/js", "./static/js")
