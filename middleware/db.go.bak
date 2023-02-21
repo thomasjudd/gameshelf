@@ -9,7 +9,7 @@ import (
 
 func SQLiteMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		db, err := sql.Open("sqlite3", "./sqlitedb/game_collection.db")
+		db, err := sql.Open("sqlite3", "./sqlitedb/gameshelf.db")
 		if err != nil {
 			panic(err)
 		}

@@ -5,7 +5,8 @@ import (
 	"html/template"
 	_ "github.com/mattn/go-sqlite3"
 	"gameshelf/controller"
-	"gameshelf/middleware"
+	//"gameshelf/middleware"
+	"gameshelf/entity"
 )
 
 func main() {
@@ -13,14 +14,16 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	entity.ConnectDatabase()
 	app := gin.Default()
-	app.Use(middleware.SQLiteMiddleware())
+//	app.Use(middleware.SQLiteMiddleware())
   app.SetHTMLTemplate(html)
 
 	app.Static("/static/js", "./static/js")
 	app.Static("/static/css", "./static/css")
 
 	app.GET("/", controller.ShelvesGet)
+	app.GET("/shelf/:shelfid", controller.ShelfGet)
 
 	app.GET("/game/:gameid", controller.GameGet)
 	app.GET("/game/new", controller.GameNewGet)
