@@ -6,12 +6,13 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 	"database/sql"
 	"gameshelf/entity"
+	"fmt"
 )
 
 func GameGet(c *gin.Context) {
 	gameId := c.Param("gameid")
-	//	query := "SELECT * FROM game where game_id = ?;"
 	game := entity.GetGame(gameId)
+	fmt.Println(game.Name)
 	c.HTML(http.StatusOK, "game.tmpl", gin.H{
 		"game_name":     game.Name,
 		"game_location": game.ShelfId,

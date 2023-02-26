@@ -11,8 +11,8 @@ type Game struct {
 func GetGame(gameId string) Game {
 	var game Game
 	query := "SELECT * FROM game WHERE id = ?;"
-	row := DB.QueryRow(query)
-	err := row.Scan(&game.GameId, &game.Name, &game.ShelfId) 
+	row := DB.QueryRow(query, gameId)
+	err := row.Scan(&(game).GameId, &(game).Name, &(game).ShelfId)
 	if err != nil {
 		panic(err)
 	}
