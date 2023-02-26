@@ -10,7 +10,6 @@ import (
 
 func GameGet(c *gin.Context) {
 	gameId := c.Param("gameid")
-	//	query := "SELECT * FROM game where game_id = ?;"
 	game := entity.GetGame(gameId)
 	c.HTML(http.StatusOK, "game.tmpl", gin.H{
 		"game_name":     game.Name,
