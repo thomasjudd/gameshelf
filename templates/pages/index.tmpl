@@ -19,7 +19,7 @@
 				{{ range $shelf := .Shelves }}
 				<div id="card-{{ $shelf.ShelfId }}" class="card" style="width: 18rem;">
 					<div class="card-body">
-						<h5 class="card-title">{{ $shelf.Name}}</h5>
+						<h5 class="card-title"><a href="/shelf/{{ $shelf.ShelfId }}">{{ $shelf.Name}}</h5>
 						<p class="card-text">
 							{{ range $game := $shelf.Games }}
 								<a class="game-link" href="/game/{{ $game.GameId }}">{{ $game.Name }}</a>
@@ -30,26 +30,6 @@
 				</div>
 				{{ end }}
 			</div>
-      <!--<div class="container-fluid px-4">
-          <h1 class="mt-4">Gameshelf</h1>
-          <div class="row">
-				  {{ range $key, $value := .virtualShelf }}
-						<div class="col-xl-3 col-md-3">
-							<div class="card bg-primary text-white mb-4">
-								<div class="card-body">
-									<a class="small text-black stretched-link" href="#">{{ $key }}</a>
-									<br />
-									{{ range $game := $value }}
-										<a class="small text-white stretched-link" href="/game/{{ $game.GameId }}">{{ $game.Name }}</a>
-										<br />
-									{{ end }}
-								</div>
-								<div class="card-footer d-flex align-items-center justify-content-between"></div>
-							</div>
-						</div>
-					  {{ end }}
-            </div>
-        </div>-->
 			{{ template "content_close" }}
         <script src="static/js/scripts.js"></script>
         <script src="static/js/gamefilter.js"></script>

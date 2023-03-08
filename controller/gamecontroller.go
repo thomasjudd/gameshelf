@@ -6,14 +6,19 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 	"database/sql"
 	"gameshelf/entity"
+	"strconv"
 )
 
 func GameGet(c *gin.Context) {
 	gameId := c.Param("gameid")
-	game := entity.GetGame(gameId)
+	gameIdInt, err :=  strconv.Atoi(gameId)
+	if err != nil {
+		panic(err)
+	}
+
+	game := entity.GetGame(gameIdInt)
 	c.HTML(http.StatusOK, "game.tmpl", gin.H{
-		"game_name":     game.Name,
-		"game_location": game.ShelfId,
+		"game": game,
 	})
 }
 

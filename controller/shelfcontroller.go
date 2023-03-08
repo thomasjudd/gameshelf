@@ -6,6 +6,7 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 	"gameshelf/entity"
 	"fmt"
+	"strconv"
 )
 
 func ShelvesGet(c *gin.Context) {
@@ -25,9 +26,14 @@ func ShelvesGet(c *gin.Context) {
 func ShelfGet(c *gin.Context) {
 	var shelf entity.Shelf
 	shelfId  := c.Param("shelfid")
-	shelf = entity.GetShelfById(shelfId)
+  shelfIdInt, err := strconv.Atoi(shelfId)
+	if err != nil {
+		panic(err)
+	}
+	shelf = entity.GetShelfById(shelfIdInt)
+	fmt.Println("found shelf: ", shelf.ShelfId)
 
 	c.HTML(http.StatusOK, "shelf.tmpl", gin.H{
-		"Shelf": shelf.Name,
+		"Shelf": shelf,
 	})
 }

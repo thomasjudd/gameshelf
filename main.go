@@ -16,7 +16,6 @@ func main() {
 	}
 	entity.ConnectDatabase()
 	app := gin.Default()
-//	app.Use(middleware.SQLiteMiddleware())
   app.SetHTMLTemplate(html)
 
 	app.Static("/static/js", "./static/js")
@@ -30,8 +29,6 @@ func main() {
 	app.POST("/game/new", controller.GameNewPost)
 
 	app.POST("/game/delete", controller.GameDelete)
-
-//	app.GET("/shelf", controller.ShelfGet)
 
 	app.Run(":8181")
 }

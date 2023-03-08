@@ -5,10 +5,10 @@ import "fmt"
 type Game struct {
 	GameId   int    `json:"game_id"`
 	Name     string `json:"name"`
-	ShelfId  int    `json:"shelf_id"`
+	ShelfId  int `json:"shelf_id"`
 }
 
-func GetGame(gameId string) Game {
+func GetGame(gameId int) Game {
 	var game Game
 	query := "SELECT * FROM game WHERE id = ?;"
 	row := DB.QueryRow(query, gameId)

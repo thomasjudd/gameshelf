@@ -1,5 +1,9 @@
 package entity
 
+import (
+	"fmt"
+)
+
 type Shelf struct {
 	Games []Game`json:"games"`
 	ShelfId int `json:"id"`
@@ -26,14 +30,18 @@ func GetAllShelves() []Shelf {
 	return shelves
 }
 
-func GetShelfById(shelfId string) Shelf {
+func GetShelfById(shelfId int) Shelf {
 	var shelf Shelf
 	query := "SELECT * FROM shelf WHERE id = ?;"
-	row := DB.QueryRow(query)
+	row := DB.QueryRow(query, fmt.Sprintf("%v", shelfId))
 	err := row.Scan(&shelf.ShelfId, &shelf.Name) 
 	if err != nil {
 		panic(err)
 	}
+
+	games := GetGamesByShelfId(shelfId)
+	shelf.Games = games
+
 	return shelf
 }
 
