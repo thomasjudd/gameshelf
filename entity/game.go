@@ -50,7 +50,7 @@ func CreateGame(game Game) {
 		panic(err)
 	}
 
-	_, err = statement.Exec(game.Name, game.ShelfId)
+	_, err = statement.Exec(game.Name, fmt.Sprintf("%v", game.ShelfId))
 	if err != nil {
 		panic(err)
 	}

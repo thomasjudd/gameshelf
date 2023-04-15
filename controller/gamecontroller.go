@@ -7,6 +7,7 @@ import (
 	"database/sql"
 	"gameshelf/entity"
 	"strconv"
+	"fmt"
 )
 
 func GameGet(c *gin.Context) {
@@ -27,17 +28,18 @@ func GameNewGet(c *gin.Context) {
 }
 
 func GameNewPost(c *gin.Context) {
-	name := c.PostForm("name")
-	shelfName := c.PostForm("location")
+  var game entity.Game
+	err := c.BindJSON(&game)
+	fmt.Println("game name: ", game.Name)
+	fmt.Println("shelf id: ", game.ShelfId)
+  if err != nil {
+		panic(err)
+  }
 
-	shelf := entity.GetShelfByName(shelfName)
+	fmt.Println("game name: ", game.Name)
+	fmt.Println("game shelf id: ", game.ShelfId)
 
-	newGame := entity.Game{
-		Name: name,
-		ShelfId: shelf.ShelfId,
-	}
-
-	entity.CreateGame(newGame)
+	entity.CreateGame(game)
 }
 
 func GameDelete(c *gin.Context) {

@@ -10,14 +10,28 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="/static/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+				<script src="/static/js/shelf.js"></script>
     </head>
     <body class="sb-nav-fixed">
 		  {{ template "navtop" }}
 		  {{ template "navside" }}
 			{{ template "content_open" }}
-			{{ range $game := .Shelf.Games }} 
-			  <div> {{ $game.Name }} </div>
-			{{ end }}
+		  <div class="card"  style="width: 18rem;">
+				<div class="card-body">
+					<div class="manage-row">
+						<button id='add-btn' onclick="showAddModal()">Add</button>
+					</div>
+					{{ range $game := .Shelf.Games }}
+						<div id="game-{{ $game.GameId }}" class="game-text">
+						{{ $game.Name }}
+						</div>
+					{{ end }}
+				</div>
+			</div>
+			<div id="add-modal">
+			  <input id="add-game-input" placeholder="Game to Add" />
+				<button id="done-modal" onclick="doneAddModal()">Done</button>
+			</div>
 			{{ template "content_close" }}
 		</body>
 </html>

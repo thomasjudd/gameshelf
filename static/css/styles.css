@@ -235,11 +235,11 @@ sup {
 }
 
 a {
-  color: #0d6efd;
-  text-decoration: underline;
+  color: black;
+  text-decoration: none;
 }
 a:hover {
-  color: #0a58ca;
+  color: #b3ea8f;
 }
 
 a:not([href]):not([class]), a:not([href]):not([class]):hover {
@@ -5488,6 +5488,17 @@ textarea.form-control-lg {
 .toast-body {
   padding: 0.75rem;
   word-wrap: break-word;
+}
+
+#add-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+	display: none;
+	background-color: white;
+	border: 1px solid #b3ea8f;
+  z-index: 9999;
 }
 
 .modal {
@@ -11699,3 +11710,12 @@ body {
   font-size: 0.75rem;
   border-radius: 0.25rem !important;
 }
+
+#modify-btn {
+	display: inline-block;
+}
+
+#card-title {
+	display: inline-block;
+}.
+

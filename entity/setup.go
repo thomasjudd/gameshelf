@@ -5,7 +5,6 @@ import (
 	"database/sql"
 )
 
-
 func ConnectDatabase() *sql.DB {
 		db, err := sql.Open("sqlite3", "./sqlitedb/gameshelf.db")
 		if err != nil {
