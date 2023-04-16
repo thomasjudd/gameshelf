@@ -3,9 +3,9 @@ function showAddModal() {
 	addModal.style.display = "block";
 }
 
-function doneAddModal() {
+function addGame() {
 	// make request to insert game
-	const gameName = document.getElementById("add-game-input").value;
+	const gameName = document.getElementById('add-game-input').value;
 	const shelfId = window.location.pathname.split('/').pop();
 	shelfIdInt = parseInt(shelfId);
 	console.log(shelfIdInt);
@@ -32,5 +32,44 @@ function doneAddModal() {
   });
 
 	const addModal = document.getElementById('add-modal');
-	addModal.style.display = "none";
+	addModal.style.display = 'none';
+}
+
+function deleteGame() {
+	const deleteGame = document.getElementById('delete-game');
+	const deleteModal = document.getElementById('delete-confirm-modal');
+
+	payload = {
+		"name": 
+	}
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  }; 
+
+  fetch('/game/delete', options)
+	.then(response => response.json())
+  .then(data => {
+    console.log(data);
+  })
+  .catch(error => {
+    console.error(error);
+  });
+
+
+	cancelDelete.style.display = 'none';
+}
+
+function cancelDelete() {
+	const deleteModal= document.getElementById('delete-confirm-modal');
+	deleteModal.style.display = 'none';
+
+}
+
+function deleteConfirmModal() {
+	const deleteModal = document.getElementById('delete-confirm-modal');
+	deleteModal.style.display = 'block';
 }

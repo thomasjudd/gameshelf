@@ -19,6 +19,18 @@ func GetGame(gameId int) Game {
 	return game
 }
 
+func GetGameByName(gameName string) Game {
+	var game Game
+	query := "SELECT * FROM game WHERE name = ?;"
+	row := DB.QueryRow(query, gameName)
+	err := row.Scan(&(game).GameId, &(game).Name, &(game).ShelfId)
+	if err != nil {
+		panic(err)
+	}
+	return game
+}
+
+
 func GetGamesByShelfId(shelfId int) []Game {
 	query := "SELECT id, name FROM game WHERE shelf_id = ?;"
 	rows, err := DB.Query(query, fmt.Sprintf("%v",shelfId))

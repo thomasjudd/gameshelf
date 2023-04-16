@@ -7,6 +7,8 @@ import (
 	"database/sql"
 	"gameshelf/entity"
 	"strconv"
+	"ioutil"
+	"encoding/json"
 	"fmt"
 )
 
@@ -40,18 +42,32 @@ func GameNewPost(c *gin.Context) {
 	fmt.Println("game shelf id: ", game.ShelfId)
 
 	entity.CreateGame(game)
+	c.JSON(http.StatusCreated, game)
 }
 
 func GameDelete(c *gin.Context) {
+	var gameName interface{}
 	db := c.MustGet("DBClient").(*sql.DB)
-	name := c.PostForm("name")
+  bodyBytes, err := ioutil.ReadAll(c.Request.Body)
+	if err != nil {
+		panic(err)
+	}
+	err = json.Unmarshal(bodyBytes, &gameName)
+	if err != nil {
+		panic(err)
+	}
+
+	game := entity.GetGameByName(gameName)
+
+
 	query := `DELETE FROM game WHERE name = ?;`
 	statement, err := db.Prepare(query)
 	defer statement.Close()
 	if err != nil {
 		panic(err)
 	}
-	_, err = statement.Exec(name)
+
+	_, err = statement.Exec(game.Name)
 	if err != nil {
 		panic(err)
 	}
