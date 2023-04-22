@@ -1,3 +1,5 @@
+var targetGame = null;
+
 function showAddModal() {
 	const addModal = document.getElementById('add-modal');
 	addModal.style.display = "block";
@@ -20,7 +22,7 @@ function addGame() {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(payload)
-  }; 
+  };
 
   fetch('/game/new', options)
 	.then(response => response.json())
@@ -35,41 +37,41 @@ function addGame() {
 	addModal.style.display = 'none';
 }
 
-function deleteGame() {
-	const deleteGame = document.getElementById('delete-game');
-	const deleteModal = document.getElementById('delete-confirm-modal');
 
-	payload = {
-		"name": 
-	}
+function deleteConfirmModal(elem) {
+	targetGame = elem.parentElement
+  gameName = targetGame.firstChild.innerHTML;
+
+  deleteConfirmModal = document.getElementById('delete-confirm-modal');
+	deleteConfirmModal.style.display.block;
+
+}
+
+
+function deleteGame() {
   const options = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(payload)
-  }; 
+    body: targetGame.innerHTML
+  };
 
-  fetch('/game/delete', options)
-	.then(response => response.json())
-  .then(data => {
-    console.log(data);
-  })
-  .catch(error => {
-    console.error(error);
-  });
+	fetch('/game/delete', options)
+	.then(response =>  response.json())
+	.then(data => {
+		console.log(data);
+	})
+	.catch(error  => {
+		console.error(error);
+	});
 
-
-	cancelDelete.style.display = 'none';
+	deleteConfirmModal = document.getElementById('delete-confirm-modal');
+	deleteConfirmModal.style.display = 'none';
 }
 
 function cancelDelete() {
-	const deleteModal= document.getElementById('delete-confirm-modal');
-	deleteModal.style.display = 'none';
-
-}
-
-function deleteConfirmModal() {
-	const deleteModal = document.getElementById('delete-confirm-modal');
-	deleteModal.style.display = 'block';
+	targetGame = null;
+	deleteConfirmModal = document.getElementById('delete-confirm-modal');
+	deleteConfirmModal.style.display = 'none';
 }

@@ -7,7 +7,7 @@ import (
 	"database/sql"
 	"gameshelf/entity"
 	"strconv"
-	"ioutil"
+	"io/ioutil"
 	"encoding/json"
 	"fmt"
 )
@@ -57,7 +57,9 @@ func GameDelete(c *gin.Context) {
 		panic(err)
 	}
 
-	game := entity.GetGameByName(gameName)
+	sName := gameName.(map[string]interface{})["name"].(string)
+
+	game := entity.GetGameByName(sName)
 
 
 	query := `DELETE FROM game WHERE name = ?;`

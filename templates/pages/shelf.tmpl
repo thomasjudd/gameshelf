@@ -22,9 +22,9 @@
 						<button id='add-btn' onclick="showAddModal()">Add</button>
 					</div>
 					{{ range $game := .Shelf.Games }}
-						<div id="game-{{ $game.GameId }}" class="game-text">
-						{{ $game.Name }}
-						<button id="delete-{{ $game.GameId }}" onclick="deleteConfirmModal()">Delete</button>
+						<div id="game-{{ $game.GameId }}" class="game">
+							<div class="game-text">{{ $game.Name }}</div>
+							<button id="delete-{{ $game.GameId }}" onclick="deleteConfirmModal(this)">Delete</button>
 						</div>
 					{{ end }}
 				</div>
@@ -33,11 +33,12 @@
 			  <input id="add-game-input" placeholder="Game to Add" />
 				<button id="add-game-input" onclick="addGame()">Add Game</button>
 			</div>
-      <div id="delete-confirm-modal" class="modal">
-			  <div> Delete this game? </div>
-				<button id="delete-game" onclick="deleteGame()">Confirm</button>
-				<button id="cancel-delete" onclick="cancelDelete()">Cancel</button>
+			<div id="delete-confirm-modal" class="modal">
+			  <div> Are you sure?</div>
+				<button id="add-game-input" onclick="deleteGame()">Yes</button>
+				<button id="add-game-input" onclick="cancelDelete()">No</button>
 			</div>
+
 			{{ template "content_close" }}
 		</body>
 </html>
