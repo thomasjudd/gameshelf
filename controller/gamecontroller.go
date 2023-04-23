@@ -1,51 +1,52 @@
 package controller
 
 import (
-	"github.com/gin-gonic/gin"
-	"net/http"
-	_ "github.com/mattn/go-sqlite3"
-	"database/sql"
-	"gameshelf/entity"
+    "github.com/gin-gonic/gin"
+    "net/http"
+    _ "github.com/mattn/go-sqlite3"
+    "gameshelf/entity"
+    "strconv"
+    "fmt"
 )
 
 func GameGet(c *gin.Context) {
-	gameId := c.Param("gameid")
-	game := entity.GetGame(gameId)
-	c.HTML(http.StatusOK, "game.tmpl", gin.H{
-		"game_name":     game.Name,
-		"game_location": game.ShelfId,
-	})
-}
+    gameId := c.Param("gameid")
+    gameIdInt, err :=  strconv.Atoi(gameId)
+    if err != nil {
+    	panic(err)
+    }
 
-func GameNewGet(c *gin.Context) {
-	c.HTML(http.StatusOK, "game_new.tmpl", gin.H{})
+    game := entity.GetGame(gameIdInt)
+    c.HTML(http.StatusOK, "game.tmpl", gin.H{
+    	"game": game,
+    })
 }
 
 func GameNewPost(c *gin.Context) {
-	name := c.PostForm("name")
-	shelfName := c.PostForm("location")
+  var game entity.Game
+    err := c.BindJSON(&game)
+    fmt.Println("game name: ", game.Name)
+    fmt.Println("shelf id: ", game.ShelfId)
+  if err != nil {
+    	panic(err)
+  }
 
-	shelf := entity.GetShelfByName(shelfName)
+    fmt.Println("game name: ", game.Name)
+    fmt.Println("game shelf id: ", game.ShelfId)
 
-	newGame := entity.Game{
-		Name: name,
-		ShelfId: shelf.ShelfId,
-	}
-
-	entity.CreateGame(newGame)
+    entity.CreateGame(game)
+    c.JSON(http.StatusCreated, game)
 }
 
 func GameDelete(c *gin.Context) {
-	db := c.MustGet("DBClient").(*sql.DB)
-	name := c.PostForm("name")
-	query := `DELETE FROM game WHERE name = ?;`
-	statement, err := db.Prepare(query)
-	defer statement.Close()
-	if err != nil {
-		panic(err)
-	}
-	_, err = statement.Exec(name)
-	if err != nil {
-		panic(err)
-	}
+    var game entity.Game
+
+    err := c.BindJSON(&game)
+    if err != nil {
+     	panic(err)
+    }
+
+    fmt.Println("game name: ", game.Name)
+
+  entity.DeleteGame(game)
 }

@@ -1,12 +1,12 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
-	"html/template"
-	_ "github.com/mattn/go-sqlite3"
 	"gameshelf/controller"
+	"github.com/gin-gonic/gin"
+	_ "github.com/mattn/go-sqlite3"
+	"html/template"
 	//"gameshelf/middleware"
-	"gameshelf/entity"
+	//"gameshelf/entity"
 )
 
 func main() {
@@ -14,10 +14,9 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	entity.ConnectDatabase()
+
 	app := gin.Default()
-//	app.Use(middleware.SQLiteMiddleware())
-  app.SetHTMLTemplate(html)
+	app.SetHTMLTemplate(html)
 
 	app.Static("/static/js", "./static/js")
 	app.Static("/static/css", "./static/css")
@@ -26,12 +25,9 @@ func main() {
 	app.GET("/shelf/:shelfid", controller.ShelfGet)
 
 	app.GET("/game/:gameid", controller.GameGet)
-	app.GET("/game/new", controller.GameNewGet)
 	app.POST("/game/new", controller.GameNewPost)
 
 	app.POST("/game/delete", controller.GameDelete)
-
-//	app.GET("/shelf", controller.ShelfGet)
 
 	app.Run(":8181")
 }

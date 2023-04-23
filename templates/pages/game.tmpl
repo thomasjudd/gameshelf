@@ -15,10 +15,9 @@
 		  {{ template "navtop" }}
 		  {{ template "navside" }}
 			{{ template "content_open" }}
-	    <h4>{{.game_name}}</h4>
+	    <h4>{{.game.Name}}</h4>
 			<br/>
-      <h4>{{.game_location }}</h4>
-
+      <h4>{{.game.ShelfId }}</h4>
 			{{ template "content_close" }}
 		</body>
 </html>

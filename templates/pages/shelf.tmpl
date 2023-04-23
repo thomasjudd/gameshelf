@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Dashboard - Gameshelf</title>
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <link href="/static/css/styles.css" rel="stylesheet" />
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+				<script src="/static/js/shelf.js"></script>
+    </head>
+    <body class="sb-nav-fixed">
+		  {{ template "navtop" }}
+		  {{ template "navside" }}
+			{{ template "content_open" }}
+		  <div class="card"  style="width: 18rem;">
+				<div class="card-body">
+					<div class="manage-row">
+						<button id='add-btn' onclick="showAddModal()">Add</button>
+					</div>
+					{{ range $game := .Shelf.Games }}
+						<div id="game-{{ $game.GameId }}" class="game">
+							<div class="game-text">{{ $game.Name }}</div>
+							<button id="delete-{{ $game.GameId }}" onclick="showDeleteConfirmModal(this)">Delete</button>
+						</div>
+					{{ end }}
+				</div>
+			</div>
+			<div id="add-modal" class="modal">
+			  <input id="add-game-input" placeholder="Game to Add" />
+				<button id="add-game-input" onclick="addGame()">Add Game</button>
+			</div>
+			<div id="delete-confirm-modal" class="modal">
+			  <div>Are you sure?</div>
+				<button id="delete-game-btn" onclick="deleteGame()">Yes</button>
+				<button id="cancel-delete-btn" onclick="cancelDelete()">No</button>
+			</div>
+			{{ template "content_close" }}
+		</body>
+</html>

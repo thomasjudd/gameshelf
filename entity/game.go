@@ -5,10 +5,10 @@ import "fmt"
 type Game struct {
 	GameId   int    `json:"game_id"`
 	Name     string `json:"name"`
-	ShelfId  int    `json:"shelf_id"`
+	ShelfId  int `json:"shelf_id"`
 }
 
-func GetGame(gameId string) Game {
+func GetGame(gameId int) Game {
 	var game Game
 	query := "SELECT * FROM game WHERE id = ?;"
 	row := DB.QueryRow(query, gameId)
@@ -18,6 +18,18 @@ func GetGame(gameId string) Game {
 	}
 	return game
 }
+
+func GetGameByName(gameName string) Game {
+	var game Game
+	query := "SELECT * FROM game WHERE name = ?;"
+	row := DB.QueryRow(query, gameName)
+	err := row.Scan(&(game).GameId, &(game).Name, &(game).ShelfId)
+	if err != nil {
+		panic(err)
+	}
+	return game
+}
+
 
 func GetGamesByShelfId(shelfId int) []Game {
 	query := "SELECT id, name FROM game WHERE shelf_id = ?;"
@@ -41,16 +53,24 @@ func GetGamesByShelfId(shelfId int) []Game {
 	return games
 }
 
+func DeleteGame(game Game) {
+	query := `DELETE FROM game WHERE name = ?;`
+	_, err := DB.Query(query, game.Name)
+	if err != nil {
+		panic(err)
+	}
+}
+
 
 func CreateGame(game Game) {
 	query := "INSERT into  game (id, name, shelf_id)  VALUES(NULL,  ?, ?)"
-	statement, err  := DB.Prepare(query)
+	statement, err := DB.Prepare(query)
 	defer statement.Close()
 	if  err != nil {
 		panic(err)
 	}
 
-	_, err = statement.Exec(game.Name, game.ShelfId)
+	_, err = statement.Exec(game.Name, fmt.Sprintf("%v", game.ShelfId))
 	if err != nil {
 		panic(err)
 	}
