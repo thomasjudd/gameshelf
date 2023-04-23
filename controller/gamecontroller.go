@@ -1,76 +1,52 @@
 package controller
 
 import (
-	"github.com/gin-gonic/gin"
-	"net/http"
-	_ "github.com/mattn/go-sqlite3"
-	"database/sql"
-	"gameshelf/entity"
-	"strconv"
-	"io/ioutil"
-	"encoding/json"
-	"fmt"
+    "github.com/gin-gonic/gin"
+    "net/http"
+    _ "github.com/mattn/go-sqlite3"
+    "gameshelf/entity"
+    "strconv"
+    "fmt"
 )
 
 func GameGet(c *gin.Context) {
-	gameId := c.Param("gameid")
-	gameIdInt, err :=  strconv.Atoi(gameId)
-	if err != nil {
-		panic(err)
-	}
+    gameId := c.Param("gameid")
+    gameIdInt, err :=  strconv.Atoi(gameId)
+    if err != nil {
+    	panic(err)
+    }
 
-	game := entity.GetGame(gameIdInt)
-	c.HTML(http.StatusOK, "game.tmpl", gin.H{
-		"game": game,
-	})
-}
-
-func GameNewGet(c *gin.Context) {
-	c.HTML(http.StatusOK, "game_new.tmpl", gin.H{})
+    game := entity.GetGame(gameIdInt)
+    c.HTML(http.StatusOK, "game.tmpl", gin.H{
+    	"game": game,
+    })
 }
 
 func GameNewPost(c *gin.Context) {
   var game entity.Game
-	err := c.BindJSON(&game)
-	fmt.Println("game name: ", game.Name)
-	fmt.Println("shelf id: ", game.ShelfId)
+    err := c.BindJSON(&game)
+    fmt.Println("game name: ", game.Name)
+    fmt.Println("shelf id: ", game.ShelfId)
   if err != nil {
-		panic(err)
+    	panic(err)
   }
 
-	fmt.Println("game name: ", game.Name)
-	fmt.Println("game shelf id: ", game.ShelfId)
+    fmt.Println("game name: ", game.Name)
+    fmt.Println("game shelf id: ", game.ShelfId)
 
-	entity.CreateGame(game)
-	c.JSON(http.StatusCreated, game)
+    entity.CreateGame(game)
+    c.JSON(http.StatusCreated, game)
 }
 
 func GameDelete(c *gin.Context) {
-	var gameName interface{}
-	db := c.MustGet("DBClient").(*sql.DB)
-  bodyBytes, err := ioutil.ReadAll(c.Request.Body)
-	if err != nil {
-		panic(err)
-	}
-	err = json.Unmarshal(bodyBytes, &gameName)
-	if err != nil {
-		panic(err)
-	}
+    var game entity.Game
 
-	sName := gameName.(map[string]interface{})["name"].(string)
+    err := c.BindJSON(&game)
+    if err != nil {
+     	panic(err)
+    }
 
-	game := entity.GetGameByName(sName)
+    fmt.Println("game name: ", game.Name)
 
-
-	query := `DELETE FROM game WHERE name = ?;`
-	statement, err := db.Prepare(query)
-	defer statement.Close()
-	if err != nil {
-		panic(err)
-	}
-
-	_, err = statement.Exec(game.Name)
-	if err != nil {
-		panic(err)
-	}
+  entity.DeleteGame(game)
 }

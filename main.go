@@ -25,7 +25,6 @@ func main() {
 	app.GET("/shelf/:shelfid", controller.ShelfGet)
 
 	app.GET("/game/:gameid", controller.GameGet)
-	app.GET("/game/new", controller.GameNewGet)
 	app.POST("/game/new", controller.GameNewPost)
 
 	app.POST("/game/delete", controller.GameDelete)
