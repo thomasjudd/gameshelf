@@ -3,7 +3,7 @@ function showAddModal() {
     addModal.style.display = 'block';
 }
 
-function addGame() {
+function addGame(buttonElement) {
     // make request to insert game
     const gameName = document.getElementById('add-game-input').value;
     const shelfId = window.location.pathname.split('/').pop();
@@ -26,48 +26,66 @@ function addGame() {
   .then(response => response.json())
   .then(data => {
     console.log(data);
+		shelfContents = document.getElementsByClassName('card-body')[0];
+		game = document.createElement('div');
+		game.id = 'game-' + data['game_id'];
+		game.classList.add('game');
+		gameText = document.createElement('div');
+		gameText.classList.add('game-text');
+		gameText.textContent = data['name'];
+		deleteButton = document.createElement('button');
+		deleteButton.classList.add('delete')
+		deleteButton.onclick = function() { showDeleteConfirmModal(this) };
+		deleteButton.textContent = 'Delete';
+
+		game.appendChild(gameText);
+		game.appendChild(deleteButton);
+
+		shelfContents.append(game);
   })
   .catch(error => {
     console.error(error);
   });
 
+
   const addModal = document.getElementById('add-modal');
   addModal.style.display = 'none';
 }
 
-var targetGame = null;
+var toDelete = null;
 
 function showDeleteConfirmModal(buttonElement) {
-  const toDelete = buttonElement.parentElement;
-  const targetGame = {
-		game_id: 0,
-		name: toDelete.firstElementChild.innerHTML,
-		shelf_id: 0
-	};	
-	console.log(targetGame);
+  toDelete = buttonElement.parentElement;
+	
   deleteConfirmModal = document.getElementById('delete-confirm-modal');
   deleteConfirmModal.style.display = 'block';
 }
 
 function deleteGame() {
   console.log("deleteGame");
-  console.log(targetGame);
+  console.log(toDelete);
+
+	gameId = toDelete.id.split('-')[1];
+
+  const targetGame = {
+		game_id: gameId,
+		name: toDelete.firstElementChild.innerHTML,
+		shelf_id: 0
+	};
 
   const options = {
-    method: 'POST',
+    method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(targetGame)
+    }
   };
 
-  fetch('/game/delete', options)
-  .then(response => {
-		console.log(response);
-	})
+  fetch('/game/' + targetGame['game_id'], options)
   .catch(error => {
     console.error(error);
   });
+
+	toDelete.remove();
 
   deleteConfirmModal = document.getElementById('delete-confirm-modal');
   deleteConfirmModal.style.display = 'none';

@@ -24,29 +24,22 @@ func GameGet(c *gin.Context) {
 
 func GameNewPost(c *gin.Context) {
   var game entity.Game
-    err := c.BindJSON(&game)
-    fmt.Println("game name: ", game.Name)
-    fmt.Println("shelf id: ", game.ShelfId)
+  err := c.BindJSON(&game)
   if err != nil {
     	panic(err)
   }
 
-    fmt.Println("game name: ", game.Name)
-    fmt.Println("game shelf id: ", game.ShelfId)
-
-    entity.CreateGame(game)
-    c.JSON(http.StatusCreated, game)
+  entity.CreateGame(game)
+	game = entity.GetGameByName(game.Name)
+  c.JSON(http.StatusCreated, game)
 }
 
 func GameDelete(c *gin.Context) {
-    var game entity.Game
-
-    err := c.BindJSON(&game)
-    if err != nil {
-     	panic(err)
-    }
-
-    fmt.Println("game name: ", game.Name)
-
-  entity.DeleteGame(game)
+	gameId := c.Param("gameid")
+	gameIdInt, err := strconv.Atoi(gameId)
+	fmt.Println("target to delete ", gameIdInt)
+	if err != nil {
+		panic(err)
+	}
+  entity.DeleteGameById(gameIdInt)
 }

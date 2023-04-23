@@ -53,14 +53,20 @@ func GetGamesByShelfId(shelfId int) []Game {
 	return games
 }
 
-func DeleteGame(game Game) {
-	query := `DELETE FROM game WHERE name = ?;`
-	_, err := DB.Query(query, game.Name)
+func DeleteGameById(gameId int) {
+	query := `DELETE FROM game WHERE id = ?;`
+
+	statement, err := DB.Prepare(query)
+	defer statement.Close()
+	if err != nil {
+		panic(err)
+	}
+
+	_, err = statement.Exec(fmt.Sprintf("%v", gameId))
 	if err != nil {
 		panic(err)
 	}
 }
-
 
 func CreateGame(game Game) {
 	query := "INSERT into  game (id, name, shelf_id)  VALUES(NULL,  ?, ?)"

@@ -5,8 +5,6 @@ import (
 	"github.com/gin-gonic/gin"
 	_ "github.com/mattn/go-sqlite3"
 	"html/template"
-	//"gameshelf/middleware"
-	//"gameshelf/entity"
 )
 
 func main() {
@@ -25,9 +23,8 @@ func main() {
 	app.GET("/shelf/:shelfid", controller.ShelfGet)
 
 	app.GET("/game/:gameid", controller.GameGet)
+	app.DELETE("/game/:gameid", controller.GameDelete)
 	app.POST("/game/new", controller.GameNewPost)
-
-	app.POST("/game/delete", controller.GameDelete)
 
 	app.Run(":8181")
 }
