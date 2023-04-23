@@ -10,6 +10,7 @@ COPY ./entity ./entity
 COPY ./main.go ./main.go
 COPY ./go.sum ./go.sum
 COPY ./go.mod ./go.mod
+RUN go mod tidy
 RUN go build  .
 COPY ./templates ./templates
 COPY ./static ./static

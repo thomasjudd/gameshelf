@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
-	"html/template"
-	_ "github.com/mattn/go-sqlite3"
 	"gameshelf/controller"
+	"github.com/gin-gonic/gin"
+	_ "github.com/mattn/go-sqlite3"
+	"html/template"
 	//"gameshelf/middleware"
 	//"gameshelf/entity"
 )
@@ -16,7 +16,7 @@ func main() {
 	}
 
 	app := gin.Default()
-  app.SetHTMLTemplate(html)
+	app.SetHTMLTemplate(html)
 
 	app.Static("/static/js", "./static/js")
 	app.Static("/static/css", "./static/css")
