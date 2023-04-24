@@ -11703,5 +11703,8 @@ body {
 
 #card-title {
 	display: inline-block;
-}.
+}
 
+main {
+	padding-top: 4rem;
+}
