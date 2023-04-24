@@ -11706,5 +11706,6 @@ body {
 }
 
 main {
-	padding-top: 4rem;
+	clear: nav;
+	padding-top: 5rem;
 }
