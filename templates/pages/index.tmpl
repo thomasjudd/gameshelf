@@ -12,14 +12,14 @@
     <body class="sb-nav-fixed">
 		  {{ template "navtop" }}
 			{{ template "content_open" }}
-				<div class="row">
+			<div class="row">
 				{{ range $shelf := .Shelves }}
-				<div id="card-{{ $shelf.ShelfId }}" class="card" style="width: 18rem;">
-					<div class="card-body">
-						<h5 class="card-title">
+				<div id="shelf-{{ $shelf.ShelfId }}" class="shelf" style="width: 18rem;">
+					<div class="shelf-body">
+						<h3 class="shelf-title">
 						  <a href="/shelf/{{ $shelf.ShelfId }}">{{ $shelf.Name}}</a>
-						</h5>
-						<p class="card-text">
+						</h3>
+						<p class="shelf-text">
 							{{ range $game := $shelf.Games }}
 								<a class="game-link" href="/game/{{ $game.GameId }}">{{ $game.Name }}</a>
 								<br />

@@ -15,18 +15,15 @@
     <body class="sb-nav-fixed">
 		  {{ template "navtop" }}
 			{{ template "content_open" }}
-		  <div class="card"  style="width: 18rem;">
-				<div class="card-body">
-					<div class="manage-row">
-						<button id='add-btn' onclick="showAddModal()">Add</button>
-					</div>
+		  <div class="shelf">
+					<button id='add-btn' onclick="showAddModal()">Add</button>
 					{{ range $game := .Shelf.Games }}
 						<div id="game-{{ $game.GameId }}" class="game">
-							<div class="game-text">{{ $game.Name }}</div>
-							<button class="delete-btn" onclick="showDeleteConfirmModal(this)">Delete</button>
+							<div class="game-text row-item">{{ $game.Name }}</div>
+							<div class="row-pad"></div>
+							<div class="row-item"><button class="delete-btn" onclick="showDeleteConfirmModal(this)">Delete</button></div>
 						</div>
 					{{ end }}
-				</div>
 			</div>
 			<div id="add-modal" class="modal">
 			  <input id="add-game-input" placeholder="Game to Add" />

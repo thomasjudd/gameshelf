@@ -1,15 +1,15 @@
 function gameFilter() {
 	const filterText = document.getElementById("game-filter-text").value.toLowerCase();
 	console.log(filterText);
-	const cards = document.querySelectorAll(".card");
+	const shelves = document.querySelectorAll(".shelf");
 
 	let game = null
-	let cardClass = ""
+	let shelfClass = ""
 	let blockMatches = false;
 
-	for(i = 0; i < cards.length; i++) {
+	for(i = 0; i < shelves.length; i++) {
 		blockMatches = false;
-		gameLinks = document.querySelectorAll("#" + cards[i].id + " .card-body .card-text .game-link");
+		gameLinks = document.querySelectorAll("#" + shelves[i].id + " .shelf-body .shelf-text .game-link");
 		for(j = 0; j < gameLinks.length; j++) {
 			gameText = gameLinks[j].innerHTML.toLowerCase();
 			if(gameText.match(filterText)) {
@@ -18,9 +18,9 @@ function gameFilter() {
 			}
 		}
 		if(blockMatches) {
-			cards[i].removeAttribute("hidden");
+			shelves[i].removeAttribute("hidden");
 		} else {
-			cards[i].setAttribute("hidden", !blockMatches);
+			shelves[i].setAttribute("hidden", !blockMatches);
 		}
 	}
 }
