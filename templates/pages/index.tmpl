@@ -17,7 +17,7 @@
 				<div id="card-{{ $shelf.ShelfId }}" class="card" style="width: 18rem;">
 					<div class="card-body">
 						<h5 class="card-title">
-							<a href="/shelf/{{ $shelf.ShelfId }}">{{ $shelf.Name}}
+						  <a href="/shelf/{{ $shelf.ShelfId }}">{{ $shelf.Name}}</a>
 						</h5>
 						<p class="card-text">
 							{{ range $game := $shelf.Games }}
