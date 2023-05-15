@@ -1,0 +1,98 @@
+/* Font */
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: #f5f5f5;
+}
+
+.sb-topnav {
+  background-color: #fff;
+  border-bottom: 1px solid #e5e5e5;
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.sb-topnav-logo {
+  margin-right: auto;
+  margin-left: 1rem;
+  height: 30px;
+}
+
+.sb-topnav-menu {
+  margin-right: 1rem;
+}
+
+.sb-topnav-menu a {
+  color: #333;
+  text-decoration: none;
+  margin-left: 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.sb-topnav-menu a:hover {
+  text-decoration: underline;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+  text-decoration: none;
+}
+
+
+/* Navbar brand */
+.sb-topnav .navbar-brand {
+  font-weight: bold;
+  font-size: 24px;
+  padding: 0;
+}
+
+/* Navbar search form */
+.sb-topnav #game-search {
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+/* Search input */
+.sb-topnav #game-filter-text {
+  border: none;
+  border-radius: 20px;
+  padding: 12px 16px;
+  background-color: #f3f3f3;
+  color: #555;
+  font-size: 16px;
+  transition: all 0.3s;
+  box-shadow: none;
+  width: 250px;
+}
+
+/* Search input focus state */
+.sb-topnav #game-filter-text:focus {
+  outline: none;
+  box-shadow: none;
+  background-color: #fff;
+  color: #000;
+}
+
+/* Search button */
+.sb-topnav #btnNavbarSearch {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 12px 16px;
+  transition: all 0.3s;
+  box-shadow: none;
+}
+
+/* Search button hover state */
+.sb-topnav #btnNavbarSearch:hover {
+  background-color: #0069d9;
+  color: #fff;
+  cursor: pointer;
+}

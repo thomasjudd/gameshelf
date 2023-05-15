@@ -4,7 +4,6 @@ function gameFilter() {
 	const shelves = document.querySelectorAll(".shelf");
 
 	let game = null
-	let shelfClass = ""
 	let blockMatches = false;
 
 	for(i = 0; i < shelves.length; i++) {
